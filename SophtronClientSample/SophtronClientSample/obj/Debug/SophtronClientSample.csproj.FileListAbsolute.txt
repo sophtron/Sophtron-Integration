@@ -1,0 +1,14 @@
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\SophtronClientSample.exe.config
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\obj\Debug\SophtronClientSample.csprojResolveAssemblyReference.cache
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\SophtronClientSample.exe
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\SophtronClientSample.pdb
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\SophtronClient.dll
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\SophtronEntities.dll
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\SophtronClient.pdb
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\SophtronEntities.pdb
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\obj\Debug\SophtronClientSample.exe
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\obj\Debug\SophtronClientSample.pdb
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\Common.dll
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\Newtonsoft.Json.dll
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\Common.pdb
+C:\Users\chenkan\Desktop\Sophtron\SophtronClientSample\SophtronClientSample\bin\Debug\Newtonsoft.Json.xml
