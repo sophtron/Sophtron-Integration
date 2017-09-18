@@ -18,10 +18,7 @@ namespace SophtronClientSample
 
             // Direct authentication client
             Sample_DirectAPI(user);
-
-            //TODO: Oauth flow
-            //Sample_OAuthAPI(user);
-
+            
             Console.WriteLine("this is a sophtron client sample code");
             Console.ReadKey();
         }

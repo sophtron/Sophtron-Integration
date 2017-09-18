@@ -26,3 +26,6 @@ C:\sophtron\Codes\SampleCode\SophtronClientSample\SophtronClientSample\bin\Debug
 C:\sophtron\Codes\SampleCode\SophtronClientSample\SophtronClientSample\bin\Debug\Common.pdb
 C:\sophtron\Codes\SampleCode\SophtronClientSample\SophtronClientSample\bin\Debug\Newtonsoft.Json.xml
 C:\sophtron\Codes\SampleCode\SophtronClientSample\SophtronClientSample\obj\Debug\Main.csprojResolveAssemblyReference.cache
+C:\SophtronGit\Sophtron-Integration\SophtronClientSample\SophtronClientSample\bin\Debug\SophtronClientSample.exe.config
+C:\SophtronGit\Sophtron-Integration\SophtronClientSample\SophtronClientSample\obj\Debug\SophtronClientSample.exe
+C:\SophtronGit\Sophtron-Integration\SophtronClientSample\SophtronClientSample\obj\Debug\SophtronClientSample.pdb
