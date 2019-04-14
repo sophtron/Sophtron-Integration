@@ -15,5 +15,10 @@ namespace SophtronEntities
         {
             public Guid UserID;
         }
+
+        public class GetIntegrationKeyParams
+        {
+            public string Id;
+        }
     }
 }

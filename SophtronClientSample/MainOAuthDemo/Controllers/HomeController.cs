@@ -77,7 +77,7 @@ namespace MainOAuthDemo.Controllers
         private void InitializeWebServerClient()
         {
             //ClientInfo(clientid, clientsecret)
-            ClientInfo demoClient = new ClientInfo( "c139bf2e-3801-454f-a7b9-20a1e2482e08", "f6e326d9-bf45-4052-8b6e-0b13b500a467");
+            ClientInfo demoClient = new ClientInfo("c139bf2e-3801-454f-a7b9-20a1e2482e08", "f6e326d9-bf45-4052-8b6e-0b13b500a467");
             //authorizationserver: https://sophtron.com
             var authorizationServerUri = new Uri(ServerInfo.AuthorizationServerBaseAddress);
             var authorizationServer = new AuthorizationServerDescription
@@ -87,7 +87,5 @@ namespace MainOAuthDemo.Controllers
             };
             _webServerClient = new WebServerClient(authorizationServer, demoClient.ClientId, demoClient.ClientSecret);
         }
-
-
     }
 }
