@@ -9,7 +9,7 @@ namespace SophtronClient
 {
     public class ApiClient : BaseAuthorizedClient
     {
-        public override string BaseEndpoint { get; protected set; } = "http://financialapi/api";
+        public override string BaseEndpoint { get; protected set; } = "https://api.sophtron.com/api";
         public override string AuthUserId { get; protected set; }
         public override string AuthUserAccessKey { get; protected set; }
 

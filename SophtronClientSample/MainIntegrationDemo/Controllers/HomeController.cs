@@ -89,6 +89,14 @@ namespace MainOAuthDemo.Controllers
                         Debug.WriteLine("No account information for {0}", (object)userInstitutionID);
                     }
                 }
+                else if (String.Equals("integration_start", body.Status, StringComparison.OrdinalIgnoreCase))
+                {
+                    Debug.WriteLine("Start Integration");
+                }
+                else if (String.Equals("select_institution", body.Status, StringComparison.OrdinalIgnoreCase))
+                {
+                    Debug.WriteLine("Select Institution");
+                }
             }
             return Json("event captured");
         }
