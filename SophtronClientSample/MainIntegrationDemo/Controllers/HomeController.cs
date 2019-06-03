@@ -32,24 +32,16 @@ namespace MainOAuthDemo.Controllers
 
         /// <summary>
         /// Demo landing page, this shows the logic for getting the integration key 
-        /// before embedding the sophtron integration page
-        /// Note, you need to get integration key each time you want load up the integration page
-        /// Sophtron service will return you a new key if previous one has expired
+        /// before embedding the sophtron integration page.
+        /// Note, you need to get integration key each time you want load up the integration page.
+        /// Sophtron service will return you a new key if the previous one has expired, each key expires after 60 minutes.
+        /// Make sure the current page is refreshed or expired within 60 minutes as the corresponding Sophtron session will expire for security reason.
         /// </summary>
         public ActionResult Index()
         {
             ApiClient client = GetSophtronApiClient();
             var response = client.GetIntegrationKeyByUserID();
-            return new RedirectResult(string.Format("/home/integration?key={0}", response["IntegrationKey"]));
-        }
-
-        /// <summary>
-        /// Demo page for embedding the integration page, see corresponding view page for more information
-        /// </summary>
-        /// <param name="key">this is the integration key</param>
-        public ActionResult Integration(string key)
-        {
-            ViewBag.IntegrationKey = key;
+            ViewBag.IntegrationKey = response["IntegrationKey"];
             return View();
         }
 
