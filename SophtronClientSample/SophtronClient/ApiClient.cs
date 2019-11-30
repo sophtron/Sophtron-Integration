@@ -1,6 +1,7 @@
 ﻿using SophtronEntities;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace SophtronClient
 {
     public class ApiClient : BaseAuthorizedClient
     {
-        public override string BaseEndpoint { get; protected set; } = "https://api.sophtron.com/api";
+        public override string BaseEndpoint { get; protected set; } = ConfigurationManager.AppSettings["SophtronApiBaseUrl"] ?? "http://api.sophtron.com/api";
         public override string AuthUserId { get; protected set; }
         public override string AuthUserAccessKey { get; protected set; }
 
