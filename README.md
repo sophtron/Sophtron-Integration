@@ -8,3 +8,16 @@ Armed with machine learning technologies, Sophtron's data aggregation system adj
 To integrate with Sophtron, follow our tutorial or sample code. Authentication methods include both direct API call and OAuth 2.0. Contact us at dev@sophtron.com if you have any questions.
 
 Sophtron Banking and Billing API is free to developers up to 10,000 requests / month. More details at https://sophtron.com/Home/Pricing
+
+## Example code
+- js:
+```bash
+cd js
+npm i
+node quick_example.js
+node full_example.js
+```
+- dotnet5: load with visualstudio and start debugging.
+- both version provides direct auth and oauth method, with a `quick example` to access the authorized healthcheck endpoint
+- js version of full bank auth (with mfa handling) example, please refer to [full_example](js/full_example.js)
+- for sophtron widget integration, please refer to [Sophtron-Wiget-Loader](https://github.com/sophtron/sophtron-widget-loader) project
