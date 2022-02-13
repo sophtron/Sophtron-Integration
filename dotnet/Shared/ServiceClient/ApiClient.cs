@@ -143,7 +143,7 @@ namespace SophtronClient
             {
                 throw new Exception("Unable to get auth phrase");
             }
-            Console.WriteLine("Auth: " + auth);
+            //Console.WriteLine("Auth: " + auth);
             var req = new HttpRequestMessage(method, url);
             req.Headers.TryAddWithoutValidation("Authorization", auth);
             if (data != null)
