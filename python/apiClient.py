@@ -36,6 +36,10 @@ class SophtronApiClient(object):
         resp = requests.request('POST', url, headers=headers, data=payload, timeout=30)
         return json.loads(resp.text)
 
+    def getInstitutionByName(self, institution_name: str):
+        return self._post('Institution/GetInstitutionByName',
+                          {'InstitutionName': institution_name})
+
     def get_user_institution_accounts(self, user_institution_id: str):
         return self._post('UserInstitution/GetUserInstitutionAccounts',
                           {'UserInstitutionID': user_institution_id})
