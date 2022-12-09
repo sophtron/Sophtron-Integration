@@ -148,8 +148,8 @@ namespace SophtronClient
             req.Headers.TryAddWithoutValidation("Authorization", auth);
             if (data != null)
             {
-                req.Headers.Add("Content-Type", "application/json");
-                req.Content = new StringContent(JsonConvert.SerializeObject(data));
+                req.Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8,
+                                    "application/json");
             }
             var res = await httpClient.SendAsync(req);
             if (res.IsSuccessStatusCode)
