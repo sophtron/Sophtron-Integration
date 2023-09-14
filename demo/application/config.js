@@ -14,8 +14,9 @@ const config = {
   
   SophtronApiServiceEndpoint: 'https://api.sophtron-prod.com/api',
   SophtronVCServiceEndpoint: 'https://vc.sophtron-prod.com/api/',
-  SophtronApiUserId: '',
-  SophtronApiUserSecret: '',
+
+  SophtronApiUserId: 'd37f847e-86a3-4a88-8918-248d0f50b2f3',
+  SophtronApiUserSecret: 'YTZkMTZmNDQtOGYzMy00NjA3LWFiODMtNzkyN2VmOGNmMGQy',
 
   MxClientId:'',
   MxApiSecret: '', 
@@ -38,6 +39,9 @@ const config = {
 const arr = Object.keys(config);
 for (let i = 0; i < arr.length; i++) {
   const key = arr[i];
+  // if(key === 'SophtronApiUserId' || key === 'SophtronApiUserSecret'){
+  //   continue;
+  // }
   config[key] = processEnv[key.toUpperCase()] || config[key];
 }
 module.exports = config;
