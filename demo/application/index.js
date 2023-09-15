@@ -33,17 +33,19 @@ const asyncHandler = (fn) => (req, res, next) => {
   });
 };
 
-function getVC(connection_id, type, userId){
+function getVC(id, type, userId){
   let path = '';
   switch (type) {
     case 'identity':
-      path = `customers/${userId}/members/${connection_id}/identity?filters=name,addresses`;
+      path = `customers/${userId}/members/${id}/identity?filters=name,addresses`;
       break;
     case 'banking':
-      path = `customers/${userId}/members/${connection_id}/accounts`;
+      path = `customers/${userId}/members/${id}/accounts`;
       break;
-    case VcType.TRANSACTIONS:
-      throw new Error('Not Implemented')
+    case 'transactions':
+      let endTime = new Date();
+      let startTime = new Date(new Date().setDate(endTime.getDate() - 30));
+      path = `customers/${userId}/accounts/${id}/transactions?startTime=${startTime.toISOString().substring(0, 10)}&endTime=${endTime.toISOString().substring(0, 10)}`
     default:
       break;
   }
@@ -93,13 +95,30 @@ app.get('/example/did/vc/identity/:provider/:id/:userId?',
   })
 );
 
-app.get('/example/did/vc/banking/:provider/:id/:userId?',
+app.get('/example/did/vc/accounts/:provider/:id/:userId?',
   asyncHandler(async (req, res) => {
     const { userId, id } = req.params;
     if (id) {
       const data = await getVC(
         id,
         'banking',
+        userId
+      );
+      res.setHeader('content-type', 'application/json');
+      res.send(data);
+    } else {
+      res.status(404).send('invalid id');
+    }
+  })
+);
+
+app.get('/example/did/vc/transactions/:provider/:id/:userId?',
+  asyncHandler(async (req, res) => {
+    const { userId, id } = req.params;
+    if (id) {
+      const data = await getVC(
+        id,
+        'transactions',
         userId
       );
       res.setHeader('content-type', 'application/json');

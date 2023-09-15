@@ -26,5 +26,4 @@ module.exports = class SophtronVcClient extends SophtronBaseClient{
     const ret = await http.get(`${this.apiConfig.vcEndpoint}vc/${path}`, headers)
     return ret;
   }
-
 };

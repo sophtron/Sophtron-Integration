@@ -15,8 +15,8 @@ const config = {
   SophtronApiServiceEndpoint: 'https://api.sophtron-prod.com/api',
   SophtronVCServiceEndpoint: 'https://vc.sophtron-prod.com/api/',
 
-  SophtronApiUserId: 'd37f847e-86a3-4a88-8918-248d0f50b2f3',
-  SophtronApiUserSecret: 'YTZkMTZmNDQtOGYzMy00NjA3LWFiODMtNzkyN2VmOGNmMGQy',
+  SophtronApiUserId: '',
+  SophtronApiUserSecret: '',
 
   MxClientId:'',
   MxApiSecret: '', 
