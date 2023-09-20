@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY ./application ./
 
-RUN rm package-lock.json
-RUN rm pnpm-lock.yaml
+RUN rm -f package-lock.json
+RUN rm -f pnpm-lock.yaml
 RUN npm install 
 
 ENV Env prod

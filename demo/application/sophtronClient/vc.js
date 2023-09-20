@@ -13,16 +13,12 @@ module.exports = class SophtronVcClient extends SophtronBaseClient{
     super(apiConfig);
   }
 
-  async getVC(path, userId) {
+  async getVC(path) {
     const res = await sophtronClient.getUserIntegrationKey();
-
     const headers = { 
       IntegrationKey: res.IntegrationKey,
       Authorization: buildSophtronAuthCode('get', path, this.apiConfig.clientId, this.apiConfig.secret)
     };
-    if (userId) {
-      headers.DidAuth = userId;
-    }
     const ret = await http.get(`${this.apiConfig.vcEndpoint}vc/${path}`, headers)
     return ret;
   }

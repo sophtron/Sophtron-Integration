@@ -194,7 +194,7 @@
           },
           showBankingVc(){
             let {user_id} = getUrlVars(window.location);
-              axios.get(`/example/did/vc/banking/${this.connection.provider}/${this.connection.id}/${this.connection.user_guid || user_id}`).then(res => {
+              axios.get(`/example/did/vc/accounts/${this.connection.provider}/${this.connection.id}/${this.connection.user_guid || user_id}`).then(res => {
                 this.bankingVc.show = true;
                 this.bankingVc.obj = res.data;
               });
