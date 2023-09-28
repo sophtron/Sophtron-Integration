@@ -1,5 +1,5 @@
-const logger = require('../infra/logger');
-const http = require('../infra/http')
+const logger = require('../../infra/logger');
+const http = require('../../infra/http')
 const SophtronBaseClient = require('./base');
 
 module.exports = class SophtronClient extends SophtronBaseClient{

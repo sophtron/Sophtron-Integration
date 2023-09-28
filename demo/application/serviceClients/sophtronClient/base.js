@@ -1,7 +1,7 @@
-const config = require('../config');
-const logger = require('../infra/logger');
-const http = require('../infra/http')
-const {buildSophtronAuthCode} = require('../utils')
+const config = require('../../config');
+const logger = require('../../infra/logger');
+const http = require('../../infra/http')
+const {buildSophtronAuthCode} = require('../../utils')
 
 module.exports = class SophtronBaseClient{
   apiConfig;

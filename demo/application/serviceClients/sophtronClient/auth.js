@@ -1,6 +1,6 @@
-const config = require('../config');
-const http = require('../infra/http')
-const {buildSophtronAuthCode} = require('../utils')
+const config = require('../../config');
+const http = require('../../infra/http')
+const {buildSophtronAuthCode} = require('../../utils')
 
 class AuthClient {
   secretExchange(payload){

@@ -1,9 +1,9 @@
-const config = require('../config');
-const logger = require('../infra/logger');
-const http = require('../infra/http');
+const config = require('../../config');
+const logger = require('../../infra/logger');
+const http = require('../../infra/http');
 const SophtronBaseClient = require('./base');
-const {buildSophtronAuthCode} = require('../utils')
-const ProviderCredentials = require('../configuration.js')
+const {buildSophtronAuthCode} = require('../../utils')
+const ProviderCredentials = require('../../configuration.js')
 const SophtronClient = require('./index.js');
 
 const sophtronClient = new SophtronClient(ProviderCredentials.sophtron);

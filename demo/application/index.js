@@ -6,9 +6,12 @@ const logger = require('./infra/logger');
 const crypto = require('crypto');
 const {encrypt} = require('./utils');
 const ProviderCredentials = require('./configuration.js')
-const {AuthClient} = require('./sophtronClient/auth.js');
-const SophtronClient = require('./sophtronClient');
-const SophtronVcClient = require('./sophtronClient/vc');
+const {AuthClient} = require('./serviceClients/sophtronClient/auth.js');
+const SophtronClient = require('./serviceClients/sophtronClient');
+const GetSophtronVc = require('./providers/sophtron');
+const GetMxVc = require('./providers/mx');
+const GetAkoyaVc = require('./providers/akoya');
+const GetFinicityVc = require('./providers/finicity');
 
 process.on('unhandledRejection', (error) => {
   logger.error(`unhandledRejection: ${error.message}`, error);
@@ -23,7 +26,6 @@ app.get('/ping', function (req, res) {
 
 const authApi = new AuthClient();
 const sophtronClient = new SophtronClient(ProviderCredentials.sophtron);
-const sophtronVcClient = new SophtronVcClient(ProviderCredentials.sophtron);
 
 const asyncHandler = (fn) => (req, res, next) => {
   return Promise.resolve(fn(req, res, next)).catch((err) => {
@@ -33,27 +35,18 @@ const asyncHandler = (fn) => (req, res, next) => {
   });
 };
 
-function getVC(id, type, userId){
-  let path = '';
-  switch (type) {
-    case 'identity':
-      path = `customers/${userId}/members/${id}/identity?filters=name,addresses`;
-      break;
-    case 'banking':
-      path = `customers/${userId}/members/${id}/accounts`;
-      break;
-    case 'transactions':
-      let endTime = new Date();
-      let startTime = new Date(new Date().setDate(endTime.getDate() - 30));
-      path = `customers/${userId}/accounts/${id}/transactions?startTime=${startTime.toISOString().substring(0, 10)}&endTime=${endTime.toISOString().substring(0, 10)}`
-    default:
-      break;
-  }
-  if(path){
-    return sophtronVcClient.getVC(path, userId);
+function getVc(provider, id, type, userId){
+  switch(provider){
+    case 'mx':
+      return GetMxVc(id, type, userId);
+    case 'akoya':
+      return GetAkoyaVc(id, type, userId);
+    case 'finicity':
+      return GetFinicityVc(id, type, userId);
+    case 'sophtron':
+      return GetSophtronVc(id, type, userId);
   }
 }
-
 
 app.get('/example/getAuthCode', asyncHandler(async (req, res) => {
   const uuid = Buffer.from(config.SophtronApiUserSecret, 'base64').toString('utf-8');
@@ -80,9 +73,10 @@ app.get('/example/data/accounts/:id/:userId', asyncHandler(async (req, res) => {
 
 app.get('/example/did/vc/identity/:provider/:id/:userId?',
   asyncHandler(async (req, res) => {
-    const { userId, id } = req.params;
+    const { userId, id, provider } = req.params;
     if (id) {
-      const data = await getVC(
+      const data = await getVc(
+        provider,
         id,
         'identity',
         userId
@@ -97,9 +91,10 @@ app.get('/example/did/vc/identity/:provider/:id/:userId?',
 
 app.get('/example/did/vc/accounts/:provider/:id/:userId?',
   asyncHandler(async (req, res) => {
-    const { userId, id } = req.params;
+    const { userId, id, provider } = req.params;
     if (id) {
-      const data = await getVC(
+      const data = await getVc(
+        provider,
         id,
         'banking',
         userId
@@ -114,9 +109,10 @@ app.get('/example/did/vc/accounts/:provider/:id/:userId?',
 
 app.get('/example/did/vc/transactions/:provider/:id/:userId?',
   asyncHandler(async (req, res) => {
-    const { userId, id } = req.params;
+    const { userId, id, provider } = req.params;
     if (id) {
-      const data = await getVC(
+      const data = await getVc(
+        provider,
         id,
         'transactions',
         userId
