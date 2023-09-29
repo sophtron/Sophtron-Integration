@@ -1,6 +1,7 @@
 const {finicityProd, finicitySandbox} = require('../configuration')
 const FinicityClient = require('../serviceClients/finicityClient');
 const vcClient = new FinicityClient(finicityProd)
+const { finicity: mapper } = require('../adapters')
 
 module.exports = async function GetVc(
   connection_id,
