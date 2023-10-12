@@ -1,0 +1,1 @@
+This is moved to the [widget repo in universal-connect project](https://github.com/Universal-Connect-Project/universal-connect-widget/tree/main/example)
