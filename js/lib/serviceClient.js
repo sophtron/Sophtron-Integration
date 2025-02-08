@@ -1,18 +1,17 @@
 const crypto = require('crypto');
 const axios =  require('axios');
 
-const apiClientFactory = function(buildAuth){
+const apiClientFactory = function(buildAuth, userId, accessKey){
     const apiBaseUrl = 'https://api.sophtron.com/api/';
-
     async function post(url, data){
-        let conf = {headers: {Authorization: await buildAuth('post', url)}};
+        let conf = {headers: {Authorization: await buildAuth('post', url, userId, accessKey)}};
         console.log('Post: ' + url);
         let res = await axios.post(apiBaseUrl + url, data, conf);
         return res.data
     }
 
     async function get(url){
-        let conf = {headers: {Authorization: await buildAuth('get', url)}};
+        let conf = {headers: {Authorization: await buildAuth('get', url, userId, accessKey)}};
         console.log('Get: ' + url);
         let res = await axios.get(apiBaseUrl + url, conf);
         return res.data
@@ -100,6 +99,18 @@ const apiClientFactory = function(buildAuth){
                     StartDate: startDate,
                     EndDate: endDate
                 });
+        },
+        getCustomers(){
+          return get(`v2/customers`)
+        },
+        getVC: async function(path) {
+          const res = await this.getIngrationKey();
+          const headers = { 
+            IntegrationKey: res.IntegrationKey,
+            // Authorization: await buildAuth('get', path, userId, accessKey) 
+          };
+          const ret = await axios.get(`https://vc.sophtron.com/${path}`, {headers})
+          return ret?.vc || ret;
         }
     }
 };
