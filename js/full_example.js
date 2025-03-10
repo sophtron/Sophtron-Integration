@@ -44,7 +44,7 @@ async function mfa(jobId){
         console.log('mfa: TokenMethod')
         //token method example: '[":  Email me   Mail me verification code at s*********@gmail.com", ":  Call me  Send verification code by voice call to ***-***-3800"]'
         //require user to choose.
-        var tokenChoice = ":  Email me   Mail me verification code at s*********@gmail.com";
+        var tokenChoice = ":  Email me   Mail me verification code at givemepls2222@gmail.com";
         await client.updateJobTokenChoice(jobID, tokenChoice);
     }
     else if (job.TokenSentFlag == true)
@@ -86,8 +86,8 @@ async function entry(){
     var inst = (await client.getInstitutionsByName(institutionName))[0];//choose target bank 
     console.log(inst);
     var institutionId = inst.InstitutionID; 
-    var username = "bankloginname"; //input your bank login name
-    var password = "bankloginpwd"; //input your bank login password
+    var username = "bank"; //input your bank login name
+    var password = "password"; //input your bank login password
     var pin = '';
     console.log('Creating user institution')
     var jobTracker = await client.createUserInstitution(userId, institutionId, username, password, pin);  
