@@ -1,41 +1,51 @@
 {
   "name": "@sophtron/sophtron-mcp-server",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "description": "MCP server for using the sophtron API",
   "license": "MIT",
   "author": "",
   "homepage": "https://sophtron.com",
   "bugs": "hhttps://github.com/sophtron/Sophtron-Integration/issues",
   "type": "module",
+  "main": "dist/index.js",
   "bin": {
-    "sphtron-mcp-server": "dist/index.js"
+    "server": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
-    "build": "tsc && shx chmod +x dist/*.js",
-    "prepare": "npm run build",
+    "build": "tsup",
     "watch": "tsc --watch",
     "run": "npx tsx src/index.ts",
     "inspector": "npx @modelcontextprotocol/inspector npx tsx src/index.ts"
   },
   "dependencies": {
-    "@modelcontextprotocol/inspector": "^0.11.0",
     "@modelcontextprotocol/sdk": "1.0.1",
-    "@types/express": "^5.0.1",
-    "@types/node-fetch": "^2.6.12",
     "axios": "^1.9.0",
     "express": "^5.1.0",
-    "node-fetch": "^3.3.2",
-    "tsx": "^4.19.4",
-    "universal-user-agent": "^7.0.2",
     "zod": "^3.22.4",
     "zod-to-json-schema": "^3.23.5"
   },
   "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.11.0",
+    "@types/express": "^5.0.1",
     "@types/node": "^22.15.3",
-    "shx": "^0.3.4",
+    "tsx": "^4.19.4",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "esm"
+    ],
+    "dts": true,
+    "clean": true,
+    "outDir": "dist",
+    "external": []
   }
 }

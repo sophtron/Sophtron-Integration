@@ -5,6 +5,7 @@ package-lock.json
 pnpm-lock.yaml
 dist/
 out/
+.npmrc
 
 # User-specific files
 *.suo

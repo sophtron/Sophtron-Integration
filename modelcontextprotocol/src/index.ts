@@ -1,7 +1,9 @@
+#!/usr/bin/env node
+
 import express from "express";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse";
+// import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse";
 import { useCallToolHandler, useListToolsHandler } from "./tools";
 
 const server = new Server(
@@ -29,25 +31,25 @@ async function stdio() {
   });
 }
 
-async function sse(){
-  const app = express();
-  let transport: SSEServerTransport | null = null;
-  app.get("/sse", (req, res) => {
-    console.log('/sse')
-    transport = new SSEServerTransport("/messages", res);
-    server.connect(transport);
-  });
-  app.post("/messages", (req, res) => {
-    console.log('/messages')
-    if (transport) {
-      transport.handlePostMessage(req, res);
-    }
-  });
-  app.listen(3000);
-}
+
 
 let main = stdio
-main = sse
+// main = async function sse(){
+//   const app = express();
+//   let transport: SSEServerTransport | null = null;
+//   app.get("/sse", (req, res) => {
+//     console.log('/sse')
+//     transport = new SSEServerTransport("/messages", res);
+//     server.connect(transport);
+//   });
+//   app.post("/messages", (req, res) => {
+//     console.log('/messages')
+//     if (transport) {
+//       transport.handlePostMessage(req, res);
+//     }
+//   });
+//   app.listen(3000);
+// }
 
 main().catch((error) => {
   console.error("Server error:", error);

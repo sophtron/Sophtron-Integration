@@ -2,9 +2,6 @@ import { createHmac } from "crypto";
 import * as fs from "fs";
 import * as path from "path";
 
-const logger = fs.createWriteStream(path.join('/home/ubuntu/dev/github/Sophtron-Integration/modelcontextprotocol/out', 'log.txt'), {
-  flags: 'w' 
-});
 
 export function getHmac(dataToEncrypt: string, key: string) {
   if (!dataToEncrypt || !key) {
@@ -28,8 +25,13 @@ export function buildSophtronAuthCode(
   return "FIApiAUTH:" + apiUserID + ":" + b64Sig + ":" + authPath;
 }
 
-export function logError(message: string, data: any = ""){
-  logger.write(`${message}\n`)
-  logger.write(JSON.stringify(data))
-  logger.write('\n')
-}
+// const logger = fs.createWriteStream(path.join('/home/ubuntu/dev/github/Sophtron-Integration/modelcontextprotocol/out', 'log.txt'), {
+//   flags: 'w' 
+// });
+// export function logError(message: string, data: any = ""){
+//   logger.write(`${message}\n`)
+//   logger.write(JSON.stringify(data))
+//   logger.write('\n')
+// }
+
+export function logError() {}
