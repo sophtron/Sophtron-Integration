@@ -1,5 +1,9 @@
 # Sophtron MCP Server
-Connect to your bank, credit card, utilities accounts to retrieve account balances and transactions
+
+A Model Context Protocol (MCP) server implementation that integrates with Sophtron to connect to the user's bank, credit card, loan, investment or utility accounts. This server provides a structured API to retrieve current status of connected financial accounts, including account balances, transactions, or due date to the AI Agent securely.
+<p align="center" width="100%">
+  <img width="80%" src="pics/screens.gif"> 
+</p>
 
 
 ## Setup
