@@ -3,7 +3,7 @@
 import express from "express";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-// import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { useCallToolHandler, useListToolsHandler } from "./tools";
 
 const server = new Server(
@@ -31,25 +31,27 @@ async function stdio() {
   });
 }
 
-
-
 let main = stdio
-// main = async function sse(){
-//   const app = express();
-//   let transport: SSEServerTransport | null = null;
-//   app.get("/sse", (req, res) => {
-//     console.log('/sse')
-//     transport = new SSEServerTransport("/messages", res);
-//     server.connect(transport);
-//   });
-//   app.post("/messages", (req, res) => {
-//     console.log('/messages')
-//     if (transport) {
-//       transport.handlePostMessage(req, res);
-//     }
-//   });
-//   app.listen(3000);
-// }
+if(process.argv[2] === '--sse'){
+  console.log('Starting sse server transport')
+  main = async function sse(){
+    const app = express();
+    let transport: SSEServerTransport | null = null;
+    app.get("/sse", (req, res) => {
+      transport = new SSEServerTransport("/messages", res);
+      server.connect(transport);
+    });
+    app.post("/messages", (req, res) => {
+      if (transport) {
+        transport.handlePostMessage(req, res);
+      }
+    });
+    app.listen(3000);
+  }
+}else{
+  //need to log to console.error so the message is not captured by the client
+  console.error('Starting stdio server transport')
+}
 
 main().catch((error) => {
   console.error("Server error:", error);
