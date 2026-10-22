@@ -272,3 +272,4 @@ ModelManifest.xml
 
 */**/packages/
 
+python/.env
